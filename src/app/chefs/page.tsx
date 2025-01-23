@@ -28,7 +28,7 @@ export default async function ChefPage() {
         <h1 className="text-6xl font-extrabold text-center mb-14 tracking-wide dark:text-[#F1F1F1]">
           Meet Our <span className="text-[#FF9F0D]">Chefs</span>
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
           {chefItems.map((item) => (
             <div
               key={item.name}
