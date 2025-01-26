@@ -34,21 +34,23 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
       <Com /> {/* Navbar */}
 
       {/* Hero Section */}
-      <div className="relative">
-        <Image
-          src="/heropic.png"
-          alt="Food Hero"
-          className="w-full h-[400px] object-cover"
-          width={1920}
-          height={400}
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white ">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-2">{food.name}</h1>
-          <p className="text-lg font-medium">
-            Home / <span className="text-[#FF9F0D]">{food.category}</span>
-          </p>
-        </div>
-      </div>
+        <div className="relative">
+  <Image
+    src="/heropic.png"
+    alt="Food Hero"
+    className="w-full h-[400px] object-cover"
+    width={1920}
+    height={400}
+  />
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+    <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-widest italic">
+      {food.name}
+    </h1>
+    <p className="text-base md:text-lg font-medium">
+      Home / <span className="text-[#FF9F0D]">{food.category}</span>
+    </p>
+  </div>
+</div>
 
       {/* Main Content */}
       <div className="py-12">
