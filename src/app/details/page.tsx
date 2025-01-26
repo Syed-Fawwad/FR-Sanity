@@ -2,6 +2,7 @@ import React from 'react'
 
 import Footer from '../components/Footer/page';
 import Com from '../components/CommonNav/page';
+import Image from 'next/image';
 
 
 const Faq = () => {
@@ -13,11 +14,13 @@ const Faq = () => {
       <div className="relative">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
 
-        <img
-          src="https://s3-alpha-sig.figma.com/img/82bc/a07c/de288adf1e3ed51d209d2c3f30979e78?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YQL~Nowe5qHeDwvYTwOPBHfxtToNJ3j1p~R65RrtA3PCLRY-hR8k16Auv57VWEHjebKmSFe8OPaBs6m7zHMn3bxM7MSoVmyl3xY8CyFZGqvo6ia80FhQngEdyc2tl6n6WZatLKelDXF~4n5TdAIbVmmqjVwGN~cmZX3pPFvMXwP7c6by92RAYZbIAlqaWceeoeNu9pAUPyGZeRND7npJAFlZPVILvGR7qFdkM4RyJFLWqC3G5sGvPb7v7eRken4Ba3uC~MneFHQHWPCJAu4eMGr-69tGrYJffGvvGSlbjUgMKmVqJHRD3QhKhNkLQEpgp0mVPONTxkQOqdTJPoTC-Q__"
-          alt="Sign-in Header"
-          className="w-full h-[410px] object-cover"
-        />
+       <Image
+                 src="/heropic.png"
+                 alt="Sign-in Header"
+                 className="w-full h-[410px] object-cover"
+                 width="1920"
+                 height="410"
+               />
         {/* Text Overlay on the Image */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white ">
           <h1 className="text-4xl font-extrabold mb-2">FAQ</h1>
