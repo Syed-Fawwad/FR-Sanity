@@ -60,7 +60,7 @@ const HomePage = () => {
 
         {/* Right Circular Section */}
         <div className="relative flex justify-center items-center mt-8 md:mt-0">
-          <Image src="/food.png" alt="food" width="600" height="600" />
+          <Image src="/food.png" alt="food" width="800" height="800" />
         </div>
       </div>
 

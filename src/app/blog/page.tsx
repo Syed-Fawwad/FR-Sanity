@@ -103,7 +103,7 @@ const blog = () => {
     <div className="flex flex-col space-y-6 w-full"> {/* Removed md:w-[60%] */}
       <div className="text-center border p-6 rounded-lg shadow-lg">
       <Image
-  src="/Blog/Whiteman.png"
+  src="/Blog/righside mainpic.jpeg"
   alt="Profile"
   className="w-24 h-24 mx-auto rounded-full object-cover"
   width={96} // Match Tailwind size
