@@ -89,7 +89,7 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between py-4 px-4 relative z-50">
           {/* Logo */}
           <Link href="/" className="text-white text-[24px] font-medium">
-            <span className="text-[#FF9F0D]">Food</span>tuck
+            <span className="text-[#FF9F0D]">FD-</span>Bites
           </Link>
 
           {/* Hamburger Menu */}
