@@ -17,7 +17,7 @@ const Com = () => {
         <div className="container mx-auto flex items-center justify-between px-4">
           {/* Logo */}
           <a href="#" className="text-2xl font-bold">
-            Food<span className="text-[#FF9F0D]">tuck</span>
+            FD-<span className="text-[#FF9F0D]">Bites</span>
           </a>
 
           {/* Navigation Links (Desktop) */}
