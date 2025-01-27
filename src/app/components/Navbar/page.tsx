@@ -50,7 +50,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link href="/" className="text-white text-[24px] mt-0 self-start font-medium">
-          <span className="text-[#FF9F0D]">Food</span>tuck
+          <span className="text-[#FF9F0D]">FD-</span>Bites
         </Link>
 
         {/* Search and Cart */}
