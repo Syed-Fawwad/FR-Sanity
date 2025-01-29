@@ -5,7 +5,6 @@ import Image from "next/image";
 import Com from "@/app/components/CommonNav/page";
 import Footer from "@/app/components/Footer/page";
 
-
 export type FoodItem = {
   name: string;
   category: string;
@@ -34,31 +33,24 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
       <Com /> {/* Navbar */}
 
       {/* Hero Section */}
-<<<<<<< HEAD
       <div className="relative">
-=======
-        <div className="relative">
->>>>>>> 2a81b480c1e7d9bde87fa8f8e60b8a7b820455c4
-  <Image
-    src="/heropic.png"
-    alt="Food Hero"
-    className="w-full h-[400px] object-cover"
-    width={1920}
-    height={400}
-  />
-  <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-    <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-widest italic">
-      {food.name}
-    </h1>
-    <p className="text-base md:text-lg font-medium">
-      Home / <span className="text-[#FF9F0D]">{food.category}</span>
-    </p>
-  </div>
-</div>
-<<<<<<< HEAD
-=======
+        <Image
+          src="/heropic.png"
+          alt="Food Hero"
+          className="w-full h-[400px] object-cover"
+          width={1920}
+          height={400}
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+          <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-widest italic">
+            {food.name}
+          </h1>
+          <p className="text-base md:text-lg font-medium">
+            Home / <span className="text-[#FF9F0D]">{food.category}</span>
+          </p>
+        </div>
+      </div>
 
->>>>>>> 2a81b480c1e7d9bde87fa8f8e60b8a7b820455c4
       {/* Main Content */}
       <div className="py-12">
         <div className="container mx-auto px-4 lg:px-8">
@@ -119,9 +111,6 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
                 >
                   Add to Cart
                 </button>
-                {/* <button className="bg-gray-800 text-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition">
-                  Add to Wishlist
-                </button> */}
               </div>
 
               {/* Social Share */}
