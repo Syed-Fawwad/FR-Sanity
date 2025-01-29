@@ -2,9 +2,19 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { SignedIn, SignedOut, SignInButton, UserButton, useClerk } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 
 const Com = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { signOut } = useClerk(); // Get signOut method from Clerk
+  const router = useRouter();
+
+  // Handle sign-out with Clerk
+  const handleSignOut = () => {
+    signOut(); // Sign out user
+    router.push('/'); // Redirect to homepage after sign-out
+  };
 
   return (
     <div>
@@ -17,7 +27,7 @@ const Com = () => {
         <div className="container mx-auto flex items-center justify-between px-4">
           {/* Logo */}
           <a href="#" className="text-2xl font-bold">
-            Food<span className="text-[#FF9F0D]">tuck</span>
+            FD-<span className="text-[#FF9F0D]">Bites</span>
           </a>
 
           {/* Navigation Links (Desktop) */}
@@ -59,12 +69,25 @@ const Com = () => {
             <a href="#" className="text-white hover:text-[#FF9F0D] transition">
               <i className="fas fa-search"></i>
             </a>
-            <Link
-              href="/signup"
-              className="text-white transition hover:underline hover:text-[#FF9F0D]"
-            >
-              <i className="far fa-user"></i>
-            </Link>
+
+            {/* Clerk Authentication */}
+            <SignedOut>
+              <div className="transition hover:text-[#FF9F0D]">
+                <SignInButton mode="modal">
+                  <i className="far fa-user"></i>
+                </SignInButton>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <div className="transition hover:text-[#FF9F0D]">
+                <UserButton />
+                {/* Custom Sign-out Button */}
+                {/* <button onClick={handleSignOut} className="text-white hover:text-[#FF9F0D] transition">
+                  <i className="fas fa-sign-out-alt"></i>
+                </button> */}
+              </div>
+            </SignedIn>
+
             <Link
               href="/cart"
               className="text-white transition hover:underline hover:text-[#FF9F0D]"
@@ -148,12 +171,25 @@ const Com = () => {
               <a href="#" className="text-white hover:text-[#FF9F0D] transition">
                 <i className="fas fa-search text-xl"></i>
               </a>
-              <Link
-                href="/signup"
-                className="text-white transition hover:text-[#FF9F0D]"
-              >
-                <i className="far fa-user text-xl"></i>
-              </Link>
+
+              {/* Clerk Authentication for Mobile */}
+              <SignedOut>
+                <div className="transition hover:text-[#FF9F0D]">
+                  <SignInButton mode="modal">
+                    <i className="far fa-user text-xl"></i>
+                  </SignInButton>
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <div className="transition hover:text-[#FF9F0D]">
+                  <UserButton />
+                  {/* Custom Sign-out Button */}
+                  {/* <button onClick={handleSignOut} className="text-white hover:text-[#FF9F0D] transition">
+                    <i className="fas fa-sign-out-alt text-xl"></i>
+                  </button> */}
+                </div>
+              </SignedIn>
+
               <Link
                 href="/cart"
                 className="text-white transition hover:text-[#FF9F0D]"
