@@ -41,12 +41,12 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
 
       {/* Hero Section */}
       <div className="relative">
-        <Image
-          src={food.image || "/heropic.png"} // Use food image if available, else fallback to a default image
-          alt="Food Hero"
-          className="w-full h-[400px] object-cover"
-          width={1920}
-          height={400}
+          <Image
+          src="/heropic.png"
+          alt="Hero Header"
+          className="w-full h-[410px] object-cover"
+          width="1920"
+          height="410"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-widest italic">
