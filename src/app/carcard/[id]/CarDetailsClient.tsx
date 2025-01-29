@@ -21,12 +21,19 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
   const router = useRouter();
 
   const handleAddToCart = () => {
-    const storedCart = localStorage.getItem("cart");
-    const cart = storedCart ? JSON.parse(storedCart) : [];
-    cart.push(food);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    router.push("/cart");
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      const cart = storedCart ? JSON.parse(storedCart) : [];
+      cart.push(food);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      router.push("/cart");
+    }
   };
+
+  // Check if food data is available
+  if (!food) {
+    return <div>Loading...</div>; // Show loading state if no data
+  }
 
   return (
     <div className="bg-[#0d0d0d] text-white">
@@ -35,7 +42,7 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
       {/* Hero Section */}
       <div className="relative">
         <Image
-          src="/heropic.png"
+          src={food.image || "/heropic.png"} // Use food image if available, else fallback to a default image
           alt="Food Hero"
           className="w-full h-[400px] object-cover"
           width={1920}
@@ -58,7 +65,7 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
             {/* Left Section: Food Image */}
             <div className="lg:w-1/2">
               <Image
-                src={food.image}
+                src={food.image || "/default-image.png"}
                 alt={food.name}
                 width={600}
                 height={600}
