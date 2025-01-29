@@ -34,7 +34,11 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
       <Com /> {/* Navbar */}
 
       {/* Hero Section */}
+<<<<<<< HEAD
       <div className="relative">
+=======
+        <div className="relative">
+>>>>>>> 2a81b480c1e7d9bde87fa8f8e60b8a7b820455c4
   <Image
     src="/heropic.png"
     alt="Food Hero"
@@ -51,6 +55,10 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
     </p>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a81b480c1e7d9bde87fa8f8e60b8a7b820455c4
       {/* Main Content */}
       <div className="py-12">
         <div className="container mx-auto px-4 lg:px-8">

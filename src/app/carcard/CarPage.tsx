@@ -44,7 +44,7 @@ export default function FoodPage() {
       <Com />
 
       {/* Hero Section */}
-      <div className="relative">
+     <div className="relative">
         <Image
           src="/heropic.png"
           alt="Hero Header"
