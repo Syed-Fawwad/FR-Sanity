@@ -1,9 +1,10 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Com from "@/app/components/CommonNav/page";
-import Footer from "@/app/components/Footer/page";
+'use client'
+import { useUser, useClerk } from '@clerk/nextjs'; // useUser hook from Clerk
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import Com from '@/app/components/CommonNav/page';
+import Footer from '@/app/components/Footer/page';
 
 export type FoodItem = {
   name: string;
@@ -14,19 +15,38 @@ export type FoodItem = {
   image: string;
   _id: string;
   description: string;
-  available: boolean;
+  available: Boolean;
 };
 
 export default function FoodDetailsClient({ food }: { food: FoodItem }) {
+  const { isLoaded, user } = useUser(); // Clerk hook to get user info
+  const { openSignIn } = useClerk(); // Clerk hook to open sign-in modal
   const router = useRouter();
 
   const handleAddToCart = () => {
-    if (typeof window !== "undefined") {
-      const storedCart = localStorage.getItem("cart");
-      const cart = storedCart ? JSON.parse(storedCart) : [];
-      cart.push(food);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      router.push("/cart");
+    if (!isLoaded || !user) {
+      // If not authenticated or Clerk is not loaded, show login prompt
+      Swal.fire({
+        title: 'Login Required!',
+        text: 'You must be logged in to add items to the cart.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Login',
+        cancelButtonText: 'Cancel',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          openSignIn(); // Open Clerk's sign-in modal
+        }
+      });
+    } else {
+      // If user is logged in, add item to cart
+      if (typeof window !== 'undefined') {
+        const storedCart = localStorage.getItem('cart');
+        const cart = storedCart ? JSON.parse(storedCart) : [];
+        cart.push(food);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        router.push('/cart'); // Navigate to cart page
+      }
     }
   };
 
@@ -41,7 +61,7 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
 
       {/* Hero Section */}
       <div className="relative">
-          <Image
+        <Image
           src="/heropic.png"
           alt="Hero Header"
           className="w-full h-[410px] object-cover"
@@ -65,7 +85,7 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
             {/* Left Section: Food Image */}
             <div className="lg:w-1/2">
               <Image
-                src={food.image || "/default-image.png"}
+                src={food.image || '/default-image.png'}
                 alt={food.name}
                 width={600}
                 height={600}
@@ -77,10 +97,10 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
             <div className="lg:w-1/2">
               <span
                 className={`inline-block px-4 py-2 rounded-lg text-sm font-semibold ${
-                  food.available ? "bg-green-500" : "bg-red-500"
+                  food.available ? 'bg-green-500' : 'bg-red-500'
                 }`}
               >
-                {food.available ? "Available" : "Out of Stock"}
+                {food.available ? 'Available' : 'Out of Stock'}
               </span>
               <h2 className="text-3xl font-bold text-[#FF9F0D] mt-4">{food.name}</h2>
               <p className="text-gray-400 mt-4">{food.description}</p>
@@ -118,25 +138,6 @@ export default function FoodDetailsClient({ food }: { food: FoodItem }) {
                 >
                   Add to Cart
                 </button>
-              </div>
-
-              {/* Social Share */}
-              <div className="mt-8">
-                <p className="text-sm font-medium text-gray-500">Share:</p>
-                <div className="flex gap-4 mt-4">
-                  <a href="#" className="text-gray-500 hover:text-blue-500 text-2xl">
-                    <i className="fab fa-facebook-square"></i>
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-blue-400 text-2xl">
-                    <i className="fab fa-twitter-square"></i>
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-pink-500 text-2xl">
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-blue-700 text-2xl">
-                    <i className="fab fa-linkedin"></i>
-                  </a>
-                </div>
               </div>
             </div>
           </div>

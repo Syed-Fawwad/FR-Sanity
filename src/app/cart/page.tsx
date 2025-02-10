@@ -15,6 +15,7 @@ type FoodItem = {
   originalPrice?: number;
   image: string;
   available: Boolean;
+  quantity: number; // Added quantity property
 };
 
 export default function CartPage() {
@@ -36,6 +37,17 @@ export default function CartPage() {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
+  // Handle quantity change
+  const handleQuantityChange = (id: string, newQuantity: number) => {
+    if (newQuantity < 1) return; // Prevent quantity from going below 1
+
+    const updatedCart = cart.map((item) =>
+      item._id === id ? { ...item, quantity: newQuantity } : item
+    );
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   // Proceed to checkout (send cart data)
   const handleCheckout = () => {
     localStorage.setItem("checkout", JSON.stringify(cart)); // Save cart data for checkout
@@ -43,7 +55,10 @@ export default function CartPage() {
   };
 
   // Calculate total price
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * (item.quantity || 1), // Default to 1 if quantity is undefined
+    0
+  );
 
   return (
     <div className="bg-[#0d0d0d] text-white min-h-screen">
@@ -92,13 +107,35 @@ export default function CartPage() {
                 </div>
                 <div className="flex flex-col items-end">
                   <div className="text-lg font-bold text-green-400 mb-4">
-                    ${item.price}
+                    ${item.price * (item.quantity || 1)} {/* Update total price based on quantity */}
                   </div>
                   {item.originalPrice && (
                     <div className="text-sm text-red-500 line-through">
                       ${item.originalPrice}
                     </div>
                   )}
+
+                  {/* Quantity change using only + and - buttons */}
+                  <div className="flex items-center space-x-4 mt-2">
+                    <button
+                      onClick={() =>
+                        handleQuantityChange(item._id, item.quantity - 1)
+                      }
+                      className="px-2 py-1 bg-gray-600 text-white rounded-lg"
+                    >
+                      -
+                    </button>
+                    <span className="text-white text-lg">{item.quantity || 1}</span>
+                    <button
+                      onClick={() =>
+                        handleQuantityChange(item._id, item.quantity + 1)
+                      }
+                      className="px-2 py-1 bg-gray-600 text-white rounded-lg"
+                    >
+                      +
+                    </button>
+                  </div>
+
                   <button
                     onClick={() => handleRemoveItem(item._id)}
                     className="text-red-500 hover:text-red-700 font-semibold mt-2"
